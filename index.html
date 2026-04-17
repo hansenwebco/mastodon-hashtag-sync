@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastodon Hashtag Sync</title>
+    <meta name="description" content="A simple, secure, browser-only tool to assist you in migrating your followed hashtags from one Mastodon server instance to another.">
+    <meta name="keywords" content="Mastodon, Fediverse, Hashtags, Sync, Migration, OAuth, Privacy">
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mastodon Hashtag Sync">
+    <meta property="og:description" content="Seamlessly copy and synchronize your followed hashtags across Mastodon servers right in your browser.">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mastodon Hashtag Sync">
+    <meta name="twitter:description" content="Easily migrate followed hashtags to a new Mastodon instance entirely locally.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob source-blob"></div>
+        <div class="blob dest-blob"></div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <i class="fa-brands fa-mastodon mastodon-icon"></i>
+            <h1>Hashtag Sync</h1>
+            <p>Seamlessly sync your followed hashtags between Mastodon instances.</p>
+        </header>
+
+        <main id="app-main">
+            <div id="auth-section" class="section glass-card active">
+                <div class="auth-grid">
+                    <div class="auth-card" id="source-auth-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <h2>Source Server</h2>
+                        </div>
+                        <div class="auth-body" id="source-auth-body">
+                            <p class="instruction">Where do you want to pull hashtags from?</p>
+                            <input type="text" id="source-server-input" placeholder="e.g. mastodon.social">
+                            <button id="source-login-btn" class="primary-btn">Connect Source</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-divider">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+
+                    <div class="auth-card" id="dest-auth-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                            <h2>Destination Server</h2>
+                        </div>
+                        <div class="auth-body" id="dest-auth-body">
+                            <p class="instruction">Where do you want to push hashtags to?</p>
+                            <input type="text" id="dest-server-input" placeholder="e.g. fosstodon.org" disabled>
+                            <button id="dest-login-btn" class="primary-btn" disabled>Connect Destination</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="continue-sync-container" class="hidden" style="text-align: center; margin-top: 2.5rem;">
+                    <button id="continue-to-sync-btn" class="primary-btn" style="width: auto; padding: 1rem 3rem; margin: 0 auto; display: inline-flex;">Continue to Sync <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div id="sync-section" class="section glass-card hidden">
+                <div class="sync-header">
+                    <h2>Select Hashtags to Sync</h2>
+                    <div class="server-infobar">
+                        <span id="source-info-badge" class="badge source" title="Change Source Server" style="cursor: pointer; transition: opacity 0.2s;">Source</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span id="dest-info-badge" class="badge dest" title="Change Destination Server" style="cursor: pointer; transition: opacity 0.2s;">Dest</span>
+                    </div>
+                </div>
+
+                <div class="sync-controls">
+                    <button id="select-all-btn" class="secondary-btn"><i class="fa-regular fa-square-check"></i> Select All</button>
+                    <button id="deselect-all-btn" class="secondary-btn"><i class="fa-regular fa-square"></i> Deselect All</button>
+                </div>
+
+                <div class="tags-container hidden" id="tags-wrapper">
+                    <ul id="tags-list" class="modern-tags-list"></ul>
+                </div>
+
+                <div class="tags-loading" id="tags-loading">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Loading hashtags...
+                </div>
+
+                <div class="sync-footer">
+                    <button id="start-sync-btn" class="primary-btn" disabled><i class="fa-solid fa-rotate"></i> Sync Selected Tags</button>
+                </div>
+            </div>
+
+            <div id="success-section" class="section glass-card hidden">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <h2>Sync Complete!</h2>
+                    <p id="success-message">Successfully synced hashtags.</p>
+                    <button id="restart-btn" class="secondary-btn">Start Over</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p><i class="fa-solid fa-shield-check"></i> <strong>Privacy First:</strong> We store your login sessions locally in your browser. No data is transmitted externally.</p>
+        </footer>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="toast" class="toast hidden">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="toast-message">Error connecting to server.</span>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
