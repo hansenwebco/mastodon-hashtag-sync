@@ -97,7 +97,7 @@ body {
 /* Header */
 .app-header {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .mastodon-icon {
@@ -637,10 +637,53 @@ input[type="text"]:disabled {
 .app-footer {
     text-align: center;
     margin-top: auto;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     color: var(--text-secondary);
     font-size: 0.85rem;
-    opacity: 0.8;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap; /* Fallback for small screens */
+}
+
+.privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.privacy-note i {
+    color: var(--success-color);
+}
+
+.footer-divider {
+    opacity: 0.3;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition);
+    opacity: 0.7;
+}
+
+.footer-links a:hover {
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    opacity: 1;
 }
 
 .app-footer i {
@@ -666,5 +709,9 @@ input[type="text"]:disabled {
     
     .glass-card {
         padding: 1.5rem;
+    }
+
+    .footer-container {
+        gap: 0.5rem;
     }
 }
