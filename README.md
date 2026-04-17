@@ -1,6 +1,6 @@
 # Mastodon Hashtag Sync
 
-**Live Demo:** <a href="https://hansenwebco.github.io/mastodon-hashtag-sync/" target="_blank">https://hansenwebco.github.io/mastodon-hashtag-sync/</a>
+**Hosted Site:** <a href="http://hashtagsync.stonedonkey.com/" target="_blank">http://hashtagsync.stonedonkey.com/</a>
 
 Mastodon Hashtag Sync is a lightweight, browser-based utility designed to help Mastodon and Fediverse users seamlessly migrate and sync their followed hashtags from one server instance to another. 
 
